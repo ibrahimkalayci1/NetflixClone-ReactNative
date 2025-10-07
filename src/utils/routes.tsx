@@ -1,0 +1,8 @@
+export const ACCOUNTS = "Accounts"
+export const TAB = "Tab"
+export const HOME = "Home"
+export const NEWS = "News"
+export const SEARCH = "Search"
+export const DOWNLOADS = "Downloads"
+export const MOVIELIST = "Movie List"
+export const MOVIEDETAIL = "Movie Detail"
