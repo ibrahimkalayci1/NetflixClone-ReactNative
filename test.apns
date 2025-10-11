@@ -1,0 +1,11 @@
+{
+    "Simulator Target Bundle": "com.netflix.udemig",
+    "aps": {
+        "alert": {
+            "title": "Simulator Test",
+            "body": "Bu bir test bildirimi"
+        },
+        "sound": "default",
+        "badge": 1
+    }
+}

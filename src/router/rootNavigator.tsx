@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Accounts from '../screens/accounts';
-import { ACCOUNTS, MOVIEDETAIL, MOVIELIST, TAB } from '../utils/routes';
+import { ACCOUNTS, MOVIEDETAIL, MOVIELIST, NOTIFICATIONS, TAB } from '../utils/routes';
 import BottomTabNavigator from './bottomTabNavigator';
 import MovieList from '../screens/movies';
 import MovieDetail from '../components/movies/movieDetail';
+import Notifications from '../screens/notifications';
 
 const RootNavigator: React.FC = () => {
   const Stack = createNativeStackNavigator();
@@ -24,6 +25,7 @@ const RootNavigator: React.FC = () => {
       <Stack.Screen name={ACCOUNTS} component={Accounts} />
       <Stack.Screen name={MOVIELIST} component={MovieList} />
       <Stack.Screen name={MOVIEDETAIL} component={MovieDetail} />
+      <Stack.Screen name={NOTIFICATIONS} component={Notifications} />
     </Stack.Navigator>
   );
 };

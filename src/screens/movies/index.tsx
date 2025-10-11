@@ -12,7 +12,7 @@ const MovieList: React.FC = ({ navigation, route }) => {
     const {nowPlayingMovies, topRatedMovies,upComingMovies,popularMovies,categories,selectedCategory} = 
     useSelector((state:RootState) =>state.movies );
     const categoryData=() => {
-        console.log("filteredData Çalıştı")
+     //   console.log("filteredData Çalıştı")
         switch (selectedCategory?.category) {
             case CATEGORIES.NOWPLAYING: return nowPlayingMovies
             case CATEGORIES.POPULAR: return popularMovies

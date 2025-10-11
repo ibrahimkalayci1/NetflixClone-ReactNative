@@ -10,6 +10,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
   const navigation = useNavigation<any>();
   return (
     <TouchableOpacity 
+    activeOpacity={0.9}
     onPress={()  => navigation.navigate(MOVIEDETAIL,{movieId:movie.id}) }
     
     style={styles.container}>
@@ -42,7 +43,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
           marginTop: 10,
         }}
       >
-        Rated:{movie.vote_average}
+        Rated:{movie.vote_average}-{movie.id}
       </Text>
     </TouchableOpacity>
   );

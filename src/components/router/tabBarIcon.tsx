@@ -1,7 +1,7 @@
 import React from 'react';
 import { TabbarIconProps } from '../../models/ui/tabbarIconProps';
 import { ArrowCircleDown2, Home2, SearchNormal,  VideoPlay } from 'iconsax-react-nativejs';
-import { DOWNLOADS, HOME, NEWS, SEARCH } from '../../utils/routes';
+import { DOWNLOADS, HOME, MYLIST, SEARCH } from '../../utils/routes';
 
 const TabbarIcon: React.FC<TabbarIconProps> = ({
   name,
@@ -12,7 +12,7 @@ const TabbarIcon: React.FC<TabbarIconProps> = ({
   switch (name) {
     case HOME:
       return <Home2 size={size} color={color}  variant={focused ? "Bold" : "Outline" } />;
-    case NEWS:
+    case MYLIST:
       return <VideoPlay size={size} color={color} variant={focused ? "Bold" : "Outline" } />;
     case SEARCH:
       return <SearchNormal size={size} color={color} variant={focused ? "Bold" : "Outline" } />;

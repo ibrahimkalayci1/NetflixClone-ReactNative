@@ -1,15 +1,18 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {MoviesState} from "../../models/data/moviesState";
-import { getNowPlayingMovies, getPopularMovies, getTopRatedMovies, getUpComingMovies } from "../actions/moviesActions";
+import { getMovieDetail, getMyList, getNowPlayingMovies, getPopularMovies, getTopRatedMovies, getUpComingMovies, searchMovie } from "../actions/moviesActions";
 import { CATEGORIES } from "../../utils/constants";
 
 
 const initialState:MoviesState={
     popularMovies:[],
+    myList:[],
+    searchList:[],
     nowPlayingMovies:[],
     topRatedMovies:[],
     upComingMovies:[],
     pending:false,
+    pendingSearch:false,
     error:{},
     selectedCategory:{},
     categories:[
@@ -36,7 +39,9 @@ const initialState:MoviesState={
   categoryTitle:"Up Coming"
 
 },
-    ]
+    ],
+    movieDetailData:{},
+    pendingMovieDetail:false
 }
 
 const moviesSlice=createSlice({
@@ -97,7 +102,45 @@ const moviesSlice=createSlice({
  .addCase(getUpComingMovies.rejected, (state,action)  => {
      state.pending = false;
      state.error = action.error;
- });
+ })
+
+
+
+ .addCase(getMovieDetail.pending,(state) => {
+     state.pendingMovieDetail = true;
+ })
+ .addCase(getMovieDetail.fulfilled, (state,action) => {
+     (state.movieDetailData = action.payload),
+     (state.pendingMovieDetail = false);
+ })
+ .addCase(getMovieDetail.rejected, (state,action)  => {
+     state.pendingMovieDetail = false;
+     state.error = action.error;
+ })
+
+
+
+ .addCase(searchMovie.pending,(state) => {
+     state.pendingSearch = true;
+ })
+ .addCase(searchMovie.fulfilled, (state,action) => {
+     (state.searchList = action.payload),
+     (state.pendingSearch = false);
+ })
+ .addCase(searchMovie.rejected, (state,action)  => {
+     state.pendingSearch = false;
+     state.error = action.error;
+ })
+
+
+
+
+
+ 
+ .addCase(getMyList.fulfilled, (state,action) => {
+     (state.myList = action.payload);
+ })
+ 
     },
 })
 
