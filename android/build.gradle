@@ -1,3 +1,10 @@
+import org.apache.tools.ant.taskdefs.condition.Os
+
+if (Os.isFamily(Os.FAMILY_MAC)) {
+    project.ext.set("nodeExecutableAndArgs", ["/opt/homebrew/bin/node"])
+}
+
+
 buildscript {
     ext {
         buildToolsVersion = "36.0.0"
@@ -19,5 +26,7 @@ buildscript {
 
     }
 }
-
+project.ext.react = [
+    nodeExecutableAndArgs: ["/opt/homebrew/bin/node"]
+]
 apply plugin: "com.facebook.react.rootproject"

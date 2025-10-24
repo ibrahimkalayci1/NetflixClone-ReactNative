@@ -1,21 +1,18 @@
-import * as React from 'react'
-import { NavigationContainer } from '@react-navigation/native'
-import RootNavigator from './src/router/rootNavigator'
- import {Provider} from "react-redux"
- import {store} from "./src/store/store"
+import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import RootNavigator from './src/router/rootNavigator';
+import { Provider } from 'react-redux';
+import { store } from './src/store/store';
+import { MOVIEDETAIL, MOVIELIST } from './src/utils/routes';
+import { linking } from './src/utils/constants';
 const App: React.FC = () => {
   return (
+    <Provider store={store}>
+      <NavigationContainer linking={linking}>
+        <RootNavigator />
+      </NavigationContainer>
+    </Provider>
+  );
+};
 
-  <Provider store={store} >
-    <NavigationContainer>
-      <RootNavigator/>
-    </NavigationContainer>
-
-  </Provider>
-
-  )
-}
-
-
-
-export default App
+export default App;

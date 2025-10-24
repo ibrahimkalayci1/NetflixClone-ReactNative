@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyB06189QGrY4iZLNnu7oW1Opj3AZ031wQs</string>
+	<key>GCM_SENDER_ID</key>
+	<string>203274678033</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.netflix.udemig</string>
+	<key>PROJECT_ID</key>
+	<string>netflixclone-5fbab</string>
+	<key>STORAGE_BUCKET</key>
+	<string>netflixclone-5fbab.firebasestorage.app</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:203274678033:ios:809e3ea2f7f16aee4e26b0</string>
+</dict>
+</plist>

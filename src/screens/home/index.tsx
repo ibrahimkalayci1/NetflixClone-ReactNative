@@ -6,6 +6,7 @@ import {
   FlatList,
   Platform,
   Alert,
+  Linking,
 } from 'react-native';
 import { screenStyle } from '../../styles/defaultScreenStyle';
 import { useSelector, useDispatch } from 'react-redux';
@@ -42,6 +43,7 @@ const Home: React.FC = () => {
       );
 
     const authStatus = await messaging().requestPermission();
+    console.log("Authorization status:", authStatus,token)
   }
 
   useEffect(() => {
@@ -53,35 +55,55 @@ const Home: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    const unsubscribe = messaging().onMessage(async remoteMessage => {
-      if (token) {
-        dispatch(
-          addNewNotification({
-            id: remoteMessage.messageId,
-            title: remoteMessage.notification?.title,
-            body: remoteMessage.notification?.body,
-            show: false,
-            value: remoteMessage?.data?.movieId,
-            sentTime: remoteMessage.sentTime,
-          }),
-        );
+  //!  UYGULAMA AÇIKKEN
+  const unsubscribe = messaging().onMessage(async remoteMessage => {
+    console.log('📩 Bildirim geldi:', remoteMessage);
+    Alert.alert('Yeni Bildirim', JSON.stringify(remoteMessage));
 
-        dispatch(
-          addNotificationDatabase({
-            userId: token,
-            id: remoteMessage.messageId,
-            title: remoteMessage.notification?.title,
-            body: remoteMessage.notification?.body,
-            show: false,
-            value: remoteMessage?.data?.movieId,
-            sentTime: remoteMessage.sentTime,
-          }),
-        );
-      }
+    if (token) {
+      dispatch(
+        addNewNotification({
+          id: remoteMessage.messageId,
+          title: remoteMessage.notification?.title,
+          body: remoteMessage.notification?.body,
+          show: false,
+          value: remoteMessage?.data?.movieId,
+          sentTime: remoteMessage.sentTime,
+        }),
+      );
+
+      dispatch(
+        addNotificationDatabase({
+          userId: token,
+          id: remoteMessage.messageId,
+          title: remoteMessage.notification?.title,
+          body: remoteMessage.notification?.body,
+          show: false,
+          value: remoteMessage?.data?.movieId,
+          sentTime: remoteMessage.sentTime,
+        }),
+      );
+    }
+  });
+
+  //! UYGULAMA KAPALIYKEN
+  messaging()
+    .getInitialNotification()
+    .then(remoteMessage => {
+      console.log('remoteMessage', remoteMessage);
+      Linking.openURL(remoteMessage?.data?.link);
     });
 
-    return unsubscribe;
-  }, [token]);
+  //! UYGULAMA ARKA PLANDA
+  messaging().onNotificationOpenedApp(remoteMessage => {
+    console.log('remoteMessage', remoteMessage);
+    Linking.openURL(remoteMessage?.data?.link);
+  });
+
+  return unsubscribe;
+}, [token]);
+
+  console.log(token);
 
   const sections = [
     {
